@@ -1,6 +1,7 @@
 package com.allstarproject.cs2340.allstarwatercrowdsourcingapp.model;
 
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -8,10 +9,11 @@ import java.text.SimpleDateFormat;
  * Created by Austin on 3/12/17.
  */
 
-public class WaterPurityReport {
+public class WaterPurityReport implements Serializable{
 
     private int reportNumber;
-    private static String location;
+    private String virusAndContamType;
+    private String location;
     private double virusPPM;
     private double contaminantPPM;
     private String waterCondition;
@@ -24,7 +26,6 @@ public class WaterPurityReport {
     /**
      * Constructor to instantiate the fields for the water resource report
      * @param location The location of the water source
-     * @param contaminantPPM the amount of the contaminantPPM
      * @param virusPPM the amount of the virusPPM
      * @param waterCondition the water condition of the water purity report
      * @param reportNumber the number associated with the water purity report
@@ -32,11 +33,11 @@ public class WaterPurityReport {
      * purity report
      */
 
-    public WaterPurityReport(String location, double contaminantPPM,
-                               double virusPPM, String waterCondition,
+    public WaterPurityReport(String location, String waterCondition ,
+                               double virusPPM, String vType,
                              int reportNumber, String name) {
         this.location = location;
-        this.contaminantPPM = contaminantPPM;
+        this.virusAndContamType = vType;
         this.virusPPM = virusPPM;
         this.waterCondition = waterCondition;
         this.reportNumber = reportNumber;
@@ -50,9 +51,16 @@ public class WaterPurityReport {
      * getter method for the user's input of the water resource report
      * @return a String of the location of the water resource report
      */
-    public static String getLocation() {
+    public String getLocation() {
         return location;
     }
+
+    public java.util.Date getDate() { return date; }
+    /**
+     * getter method for returning type of virus/contaminant in a report
+     * @return the type of virus
+     */
+    public String getVirusType() { return virusAndContamType; }
 
     /**
      * setter method for the location of the water report that the user

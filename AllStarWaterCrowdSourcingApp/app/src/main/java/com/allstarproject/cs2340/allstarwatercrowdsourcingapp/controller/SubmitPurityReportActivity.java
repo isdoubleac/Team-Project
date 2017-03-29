@@ -8,17 +8,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.allstarproject.cs2340.allstarwatercrowdsourcingapp.R;
 import com.allstarproject.cs2340.allstarwatercrowdsourcingapp.model.Model;
+import com.allstarproject.cs2340.allstarwatercrowdsourcingapp.model.ModelFacade;
 
-
-public class SubmitPurityReportActivity extends AppCompatActivity
-        implements View.OnClickListener {
-    private Model model = Model.getInstance();
-    private Button btnSubmitWaterPurityReport;
-    private Button btnCancelSubmitPurityReport;
-    private EditText txtWaterLocationPurity;
-    private EditText txtContaminantType;
-    private EditText txtVirusPPM;
-    private EditText txtWaterConditionPurity;
+public class SubmitPurityReportActivity extends AppCompatActivity implements View.OnClickListener {
+    ModelFacade modelFacade = ModelFacade.getModelFacade();
+    Model model = modelFacade.getModelInstance();
+    Button btnSubmitWaterPurityReport;
+    Button btnCancelSubmitPurityReport;
+    EditText txtWaterLocationPurity;
+    EditText txtContaminantType;
+    EditText txtVirusPPM;
+    EditText txtWaterConditionPurity;
+    EditText txtVirOrContamType;
 
 
     @Override
@@ -35,10 +36,11 @@ public class SubmitPurityReportActivity extends AppCompatActivity
 
         txtWaterLocationPurity = (EditText) findViewById(
                 R.id.txtWaterLocationPurity);
-        txtContaminantType = (EditText) findViewById(R.id.txtContaminantType);
         txtVirusPPM = (EditText) findViewById(R.id.txtVirusPPM);
         txtWaterConditionPurity = (EditText) findViewById(
                 R.id.txtWaterConditionPurity);
+
+        txtVirOrContamType = (EditText) findViewById(R.id.txtVirOrContamType);
     }
 
     @Override
@@ -54,10 +56,9 @@ public class SubmitPurityReportActivity extends AppCompatActivity
                     MainActivity.class);
             model.addPurityReportList(txtWaterLocationPurity.getText().
                             toString(),
-                    Double.parseDouble(txtContaminantType.getText().
-                            toString()),
                     Double.parseDouble(txtVirusPPM.getText().toString()),
-                    txtWaterConditionPurity.getText().toString());
+                    txtWaterConditionPurity.getText().toString()
+                    ,txtVirOrContamType.getText().toString());
             startActivity(intent2);
             break;
         default:
